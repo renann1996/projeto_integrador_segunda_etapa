@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamento</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+        input, button { display: block; width: 100%; margin-bottom: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Novo Agendamento</h2>
+    <input type="text" id="cliente" placeholder="Seu Nome">
+    <input type="text" id="servico" placeholder="Serviço Desejado">
+    <input type="date" id="data">
+    <button onclick="agendar()">Agendar</button>
+
+    <h3>Agendamentos Realizados</h3>
+    <ul id="lista"></ul>
+
+    <script>
+        async function carregar() {
+            const res = await fetch('http://localhost:5000/agendamentos');
+            const dados = await res.json();
+            document.getElementById('lista').innerHTML = dados.map(a => `<li>${a.cliente} - ${a.servico} (${a.data})</li>`).join('');
+        }
+
+        async function agendar() {
+            const cliente = document.getElementById('cliente').value;
+            const servico = document.getElementById('servico').value;
+            const data = document.getElementById('data').value;
+
+            await fetch('http://localhost:5000/agendamentos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cliente, servico, data })
+            });
+            carregar();
+        }
+        carregar();
+    </script>
+</body>
+</html>
