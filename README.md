@@ -8,7 +8,7 @@ https://renann1996.github.io/projeto_integrador_segunda_etapa/landing.html
 > Projeto desenvolvido para a Segunda Etapa da disciplina.
 
 ## 👥 Integrantes do Grupo
-* **Renan Fabiano Neves** - GitHub: [@usuario1](https://github.com/renann1996)
+* **Renan Fabiano Neves** - GitHub: [@renan1996](https://github.com/renann1996)
 
 ## 🚀 Links do Projeto
 * **Landing Page:** `(https://renann1996.github.io/projeto_integrador_segunda_etapa/landing.html)`
