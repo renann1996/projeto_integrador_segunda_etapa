@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamento</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+        input, button { display: block; width: 100%; margin-bottom: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Novo Agendamento</h2>
+    <input type="text" id="cliente" placeholder="Seu Nome">
+    <input type="text" id="servico" placeholder="Serviço Desejado">
+    <input type="date" id="data">
+    <button onclick="agendar()">Agendar</button>
+
+    <h3>Agendamentos Realizados</h3>
+    <ul id="lista"></ul>
+
+    <script>
+        // URL da API hospedada no Render
+        const API_URL = 'https://projeto-integrador-segunda-etapa-4.onrender.com/agendamentos';
+
+        async function carregar() {
+            try {
+                const res = await fetch(API_URL);
+                const dados = await res.json();
+                document.getElementById('lista').innerHTML = dados.map(a => `<li>${a.cliente} - ${a.servico} (${a.data})</li>`).join('');
+            } catch (erro) {
+                console.error('Erro ao carregar agendamentos:', erro);
+            }
+        }
+
+        async function agendar() {
+            const cliente = document.getElementById('cliente').value;
+            const servico = document.getElementById('servico').value;
+            const data = document.getElementById('data').value;
+
+            if (!cliente || !servico || !data) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cliente, servico, data })
+                });
+
+                // Limpa os campos do formulário
+                document.getElementById('cliente').value = '';
+                document.getElementById('servico').value = '';
+                document.getElementById('data').value = '';
+
+                // Recarrega a lista
+                carregar();
+            } catch (erro) {
+                console.error('Erro ao salvar agendamento:', erro);
+            }
+        }
+
+        carregar();
+    </script>
+</body>
+</html>
