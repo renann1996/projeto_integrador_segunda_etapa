@@ -14,7 +14,7 @@ https://renann1996.github.io/projeto_integrador_segunda_etapa/landing.html
 * **Landing Page:** `(https://renann1996.github.io/projeto_integrador_segunda_etapa/landing.html)`
 * **Aplicação Frontend:** `(https://github.com/renann1996/projeto_integrador_segunda_etapa/)`
 * **Backend API (Render):** `(https://projeto-integrador-segunda-etapa-4.onrender.com/)`
-* **Vídeo Demonstrativo (1 min):** [Cole aqui o link do Loom, YouTube ou Drive]
+
 
 ## 🛠️ Tecnologias Utilizadas
 * **Banco de Dados:** SQLite / PostgreSQL
